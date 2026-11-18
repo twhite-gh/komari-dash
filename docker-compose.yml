@@ -1,0 +1,16 @@
+services:
+  komari:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        KOMARI_VERSION: latest
+    container_name: komari
+    restart: unless-stopped
+    ports:
+      - "25774:25774"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - TZ=Asia/Shanghai
+      - LISTEN=0.0.0.0:25774
